@@ -1,9 +1,10 @@
 package calculator;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 
 public class Calculator {
     private static final Logger logger = LogManager.getLogger(Calculator.class);
@@ -14,21 +15,17 @@ public class Calculator {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
-        double number1, number2;
-
-        // When the Docker container is started in the background via Ansible and you attach your terminal to it,
-        // the initial application System.out.println statements are wiped out, to avoid that we use this stop-gap fix
-        // Only enter the application once the user has pressed Enter key on the terminal.
-
+        double num1, num2;
 
         do {
-            System.out.println("Calculator-DevOps, Choose to perform operation");
+            System.out.println("CALCULATOR");
+            System.out.println("Here is your calculator menu:");
             System.out.print(
-                "Press 1 to find Factorial\n" +
-                "Press 2 to find Square Root\n" +
-                "Press 3 to find Power\n" +
-                "Press 4 to find Natural Logarithm\n" +
-                "Press 5 to Exit\n" +
+                "1. Power\n" +
+                "2. Factorial\n" +
+                "3. Natural Logarithm\n" +
+                "4. Square root\n" +
+                "Any other key --> Exit\n\n" +
                 "Enter your choice: "
             );
 
@@ -38,91 +35,151 @@ public class Calculator {
                 choice = scanner.nextInt();
             }
             catch (InputMismatchException error) {
+                System.out.println(error);
                 return;
             }
 
             switch (choice) {
-                case 1:
-                    // find factorial
-                    System.out.print("Enter a number : ");
-                    number1 = scanner.nextDouble();
-                    System.out.println("Factorial of " + number1 + " is : " + calculator.factorial(number1));
+
+                case 1: // Calculate num1 ^ num2
+                    System.out.println("Enter 2 numbers : ");
+
+                    try {
+                        num1 = scanner.nextDouble();
+                        num2 = scanner.nextDouble();
+                    }
+
+                    catch (InputMismatchException error) {
+                        System.out.println(error);
+                        return;
+                    }
+
+                    System.out.println(num1 + " ^ " + num2 + " = " + calculator.power(num1, num2));
+                    System.out.println("\n");
+                    break;
+
+                case 2: // Calculate num1!
+                    int num;
+                    System.out.print("Enter your number to find its factorial: ");
+
+                    try {
+                        num = scanner.nextInt();
+                    }
+
+                    catch (InputMismatchException error) {
+                        System.out.println(error);
+                        return;
+                    }
+
+                    System.out.println("Factorial of " + num + " = " + calculator.factorial(num));
                     System.out.println("\n");
 
                     break;
 
-                case 2:
-                    // find square root
-                    System.out.print("Enter a number : ");
-                    number1 = scanner.nextDouble();
-                    System.out.println("Square root of " + number1 + " is : " + calculator.sqroot(number1));
+                case 3: // Calculate loge(num1)
+                    System.out.print("Enter your number to find its logarithm : ");
+
+                    try {
+                        num1 = scanner.nextDouble();
+                    }
+
+                    catch (InputMismatchException error) {
+                        System.out.println(error);
+                        return;
+                    }
+
+                    System.out.println("Natural log of " + num1 + " = " + calculator.logE(num1));
                     System.out.println("\n");
                     break;
 
-                case 3:
-                    // find power
-                    System.out.print("Enter the first number : ");
-                    number1 = scanner.nextDouble();
-                    System.out.print("Enter the second number : ");
-                    number2 = scanner.nextDouble();
-                    System.out.println(number1 + " raised to power " + number2+" is : " + calculator.power(number1, number2));
-                    System.out.println("\n");
-                    break;
+                case 4: // Calculate sqroot(num1)
+                    System.out.print("Enter your number to find its square root : ");
 
-                case 4:
-                    // find natural log
-                    System.out.print("Enter a number : ");
-                    number1 = scanner.nextDouble();
-                    System.out.println("Natural log of " + number1 + " is : " + calculator.naturalLog(number1));
+                    try {
+                        num1 = scanner.nextDouble();
+                    }
+
+                    catch (InputMismatchException error) {
+                        System.out.println(error);
+                        return;
+                    }
+
+                    System.out.println("Square root of " + num1 + " = " + calculator.squareRoot(num1));
                     System.out.println("\n");
                     break;
 
                 default:
-                    System.out.println("Exiting....");
+                    System.out.println("That's all from my side...\n Exiting....");
                     return;
             }
         } while (true);
     }
 
-    public double factorial(double number1) {
-        logger.info("[FACTORIAL] - " + number1);
-
+    public double factorial(double num1) {
+        logger.info("[FACTORIAL] - " + num1);
         double result = 1;
-        for(int i = 1; i <= number1; i++)
-            result *= i;
+
+        try {
+            if (num1 < 0) {
+                result = Double.NaN;
+                throw new ArithmeticException("Case of Negative number");
+            }
+
+            else{
+                for(int i = 1; i <= num1; i++)
+                    result *= i;
+            }
+        }
+
+        catch (ArithmeticException error) {
+            System.out.println("[EXCEPTION - FACTORIAL] - Cannot find factorial : " + error.getLocalizedMessage());
+        }
 
         logger.info("[RESULT - FACTORIAL] - " + result);
         return result;
     }
 
-    public double sqroot(double number1) {
-        logger.info("[SQ ROOT] - " + number1);
-        double result = Math.sqrt(number1);
-        logger.info("[RESULT - SQ ROOT] - " + result);
+    public double squareRoot(double num1) {
+        logger.info("[SQUARE ROOT] - " + num1);
+        double result = Double.NaN;
+
+        try {
+            if (num1 < 0) {
+                result = Double.NaN;
+                throw new ArithmeticException("Case of Negative number");
+            }
+            else
+                result = Math.sqrt(num1);
+        }
+        catch (ArithmeticException error) {
+            System.out.println("[EXCEPTION - SQUARE ROOT] - Cannot find square-root : " + error.getLocalizedMessage());
+        }
+
+        logger.info("[RESULT - SQUARE ROOT] - " + result);
         return result;
     }
 
-    public double power(double number1, double number2) {
-        logger.info("[POWER - " + number1 + " RAISED TO] " + number2);
-        double result = Math.pow(number1,number2);
+    public double power(double num1, double num2) {
+        logger.info("[POWER - " + num1 + " RAISED TO] " + num2);
+        double result = Math.pow(num1,num2);
         logger.info("[RESULT - POWER] - " + result);
         return result;
     }
 
-    public double naturalLog(double number1) {
-        logger.info("[NATURAL LOG] - " + number1);
+    public double logE(double num1) {
+        logger.info("[NATURAL LOG] - " + num1);
         double result = 0;
 
         try {
-            if (number1 < 0) {
+            if (num1 < 0) {
                 result = Double.NaN;
-                throw new ArithmeticException("Case of NaN 0.0/0.0");
+                throw new ArithmeticException("Case of Negative number");
             }
             else
-                result = Math.log(number1);
+                result = Math.log(num1);
         }
         catch (ArithmeticException error) {
-            System.out.println("[EXCEPTION - LOG] - Cannot find log of negative numbers " + error.getLocalizedMessage());
+            System.out.println("[EXCEPTION - LOG] - Cannot find log : " + error.getLocalizedMessage());
         }
         logger.info("[RESULT - NATURAL LOG] - " + result);
         return result;

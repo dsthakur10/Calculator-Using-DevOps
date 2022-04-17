@@ -7,51 +7,51 @@ public class CalculatorTest {
     Calculator calculator = new Calculator();
 
     @Test
-    public void factorialTruePositive(){
-        assertEquals("Finding factorial of a number for True Positive", 6, calculator.factorial(3), DELTA);
-        assertEquals("Finding factorial of a number for True Positive", 720, calculator.factorial(6), DELTA);
-    }
-
-    @Test
-    public void factorialTrueNegative(){
-        assertNotEquals("Finding factorial of a number for True Negative", 69, calculator.factorial(5), DELTA);
-        assertNotEquals("Finding factorial of a number for True Negative", 42, calculator.factorial(10), DELTA);
-    }
-
-    @Test
     public void powerTruePositive(){
-        assertEquals("Finding power for True Positive", 32, calculator.power(2, 5), DELTA);
-        assertEquals("Finding power for True Positive", 81, calculator.power(9, 2), DELTA);
+        assertEquals("Calculating power for True Positive", 27, calculator.power(3, 3), DELTA);
+        assertEquals("Calculating power for True Positive", 248832, calculator.power(12, 5), DELTA);
     }
 
     @Test
     public void powerTrueNegative(){
-        assertNotEquals("Finding power for True Negative", 69, calculator.power(2, 2), DELTA);
-        assertNotEquals("Finding power for True Negative", -69420, calculator.power(-2, 20), DELTA);
+        assertNotEquals("Calculating power for True Negative", 0.69, calculator.power(2, -5), DELTA);
+        assertNotEquals("Calculating power for True Negative", -205, calculator.power(-20, 5), DELTA);
     }
 
     @Test
-    public void logTruePositive(){
-        assertEquals("Finding natural log for True Positive", 0, calculator.naturalLog(1), DELTA);
-        assertEquals("Finding natural log for True Positive", 5.703782474656201, calculator.naturalLog(300), DELTA);
+    public void factorialTruePositive(){
+        assertEquals("Calculating factorial for True Positive", 120, calculator.factorial(5), DELTA);
+        assertEquals("Calculating factorial for True Positive", 1, calculator.factorial(0), DELTA);
     }
 
     @Test
-    public void logTrueNegative(){
-        assertNotEquals("Finding natural log for True Negative", 69, calculator.naturalLog(2.4), DELTA);
-        assertNotEquals("Finding natural log for True Negative", 420, calculator.naturalLog(2.1), DELTA);
+    public void factorialTrueNegative(){
+        assertNotEquals("Calculating factorial for True Negative", 100, calculator.factorial(6), DELTA);
+        assertNotEquals("Calculating factorial for True Negative", 870, calculator.factorial(9), DELTA);
     }
 
     @Test
-    public void sqrootTruePositive(){
-        assertEquals("Finding square root for True Positive", 11, calculator.sqroot(121), DELTA);
-        assertEquals("Finding square root for True Positive", 121, calculator.sqroot(14641), DELTA);
+    public void logETruePositive(){
+        assertEquals("Calculating natural log for True Positive", 0, calculator.logE(1), DELTA);
+        assertEquals("Calculating natural log for True Positive", 5.703782474656201, calculator.logE(300), DELTA);
     }
 
     @Test
-    public void sqrootTrueNegative(){
-        assertNotEquals("Finding square root for True Negative", 69, calculator.sqroot(3), DELTA);
-        assertNotEquals("Finding square root for True Negative", -42, calculator.sqroot(4), DELTA);
+    public void logETrueNegative(){
+        assertNotEquals("Calculating natural log for True Negative", 3.598, calculator.logE(6.8), DELTA);
+        assertNotEquals("Calculating natural log for True Negative", 10, calculator.logE(20.7), DELTA);
+    }
+
+    @Test
+    public void squareRootTruePositive(){
+        assertEquals("Calculating square root for True Positive", 12, calculator.squareRoot(144), DELTA);
+        assertEquals("Calculating square root for True Positive", 555, calculator.squareRoot(308025), DELTA);
+    }
+
+    @Test
+    public void squareRootTrueNegative(){
+        assertNotEquals("Calculating square root for True Negative", 0, calculator.squareRoot(3), DELTA);
+        assertNotEquals("Calculating square root for True Negative", -8, calculator.squareRoot(64), DELTA);
     }
 
 
