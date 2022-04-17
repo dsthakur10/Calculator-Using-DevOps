@@ -1,20 +1,21 @@
 pipeline {
-    // Declare variables that will be used by the later stages
+    // Declare environment variables that will be used by multiple stages to avoid redundancy
     environment {
         DOCKERHUB_REGISTRY = "dsthakur10/calculator-using-devops"
         DOCKERHUB_CREDENTIALS = credentials('dockerHub-devendra')
     }
     
-    // The "agent" section configures on which nodes the pipeline can be 
-    // run. Specifying "agent any" means that Jenkins will run the job on  
+    // The "agent" section configures on which nodes the pipeline can be
+    // run. Specifying "agent any" means that Jenkins will run the job on
     // any of the available nodes.
+
     agent any 
     
     stages {
         
         stage('Git Pull') {
             steps {
-                // credentials are required because its a private repository
+                // To git pull from a private repository, credentials are required
                 git url: 'https://github.com/dsthakur10/Calculator-Using-DevOps.git',
                 branch: 'master',
                 credentialsId: 'github-devendra'

@@ -47,15 +47,15 @@ public class Calculator {
                     try {
                         num1 = scanner.nextDouble();
                         num2 = scanner.nextDouble();
-                    }
 
-                    catch (InputMismatchException error) {
+                    } catch (InputMismatchException error) {
                         System.out.println(error);
                         return;
                     }
 
                     System.out.println(num1 + " ^ " + num2 + " = " + calculator.power(num1, num2));
                     System.out.println("\n");
+
                     break;
 
                 case 2: // Calculate num1!
@@ -64,9 +64,7 @@ public class Calculator {
 
                     try {
                         num = scanner.nextInt();
-                    }
-
-                    catch (InputMismatchException error) {
+                    } catch (InputMismatchException error) {
                         System.out.println(error);
                         return;
                     }
@@ -81,9 +79,7 @@ public class Calculator {
 
                     try {
                         num1 = scanner.nextDouble();
-                    }
-
-                    catch (InputMismatchException error) {
+                    } catch (InputMismatchException error) {
                         System.out.println(error);
                         return;
                     }
@@ -97,9 +93,7 @@ public class Calculator {
 
                     try {
                         num1 = scanner.nextDouble();
-                    }
-
-                    catch (InputMismatchException error) {
+                    } catch (InputMismatchException error) {
                         System.out.println(error);
                         return;
                     }
@@ -112,6 +106,7 @@ public class Calculator {
                     System.out.println("That's all from my side...\n Exiting....");
                     return;
             }
+
         } while (true);
     }
 

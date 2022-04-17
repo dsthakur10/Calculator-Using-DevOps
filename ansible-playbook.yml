@@ -11,11 +11,4 @@
         source: pull
 
 
-#    - name: Create Calculator Docker Container
-#      docker_container:
-#        name: calculator-using-devops
-#        image: dsthakur10/calculator-using-devops
-#        state: started
-#        tty: yes
-#        interactive: yes
 

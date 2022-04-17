@@ -42,3 +42,5 @@
 2022-04-17 13:31:22.436 [main] INFO  calculator.Calculator - [RESULT - SQUARE ROOT] - 3.0610194380304088
 2022-04-17 13:33:03.579 [main] INFO  calculator.Calculator - [POWER - -9.0 RAISED TO] -10.0
 2022-04-17 13:33:03.580 [main] INFO  calculator.Calculator - [RESULT - POWER] - 2.8679719907924413E-10
+2022-04-17 18:01:36.882 [main] INFO  calculator.Calculator - [NATURAL LOG] - 8.0
+2022-04-17 18:01:36.886 [main] INFO  calculator.Calculator - [RESULT - NATURAL LOG] - 2.0794415416798357
