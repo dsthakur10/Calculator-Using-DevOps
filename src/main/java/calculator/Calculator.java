@@ -2,8 +2,8 @@ package calculator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 
 public class Calculator {
@@ -17,98 +17,81 @@ public class Calculator {
         Scanner scanner = new Scanner(System.in);
         double num1, num2;
 
-        do {
-            System.out.println("CALCULATOR");
-            System.out.println("Here is your calculator menu:");
-            System.out.print(
-                "1. Power\n" +
-                "2. Factorial\n" +
-                "3. Natural Logarithm\n" +
-                "4. Square root\n" +
-                "Any other key --> Exit\n\n" +
-                "Enter your choice: "
-            );
+        while(true){
+            while (true) {
+                try {
+                    int choice;
+                    System.out.println("\nCALCULATOR");
+                    System.out.println("Here is your calculator menu:");
+                    System.out.print(
+                            "1. Power\n" +
+                            "2. Factorial\n" +
+                            "3. Natural Logarithm\n" +
+                            "4. Square root\n" +
+                            "0. Exit\n\n" +
+                            "Enter your choice: "
+                    );
 
-            int choice;
+                    choice = scanner.nextInt();
 
-            try {
-                choice = scanner.nextInt();
+                    switch (choice) {
+
+                        case 1: // Calculate num1 ^ num2
+                            System.out.println("Enter 2 numbers : ");
+                            num1 = scanner.nextDouble();
+                            num2 = scanner.nextDouble();
+
+                            System.out.println(num1 + " ^ " + num2 + " = " + calculator.power(num1, num2));
+                            System.out.println("\n");
+                            break;
+
+                        case 2: // Calculate num1!
+                            int num;
+                            System.out.print("Enter your number to find its factorial: ");
+                            num = scanner.nextInt();
+
+                            System.out.println("Factorial of " + num + " = " + calculator.factorial(num));
+                            System.out.println("\n");
+                            break;
+
+                        case 3: // Calculate loge(num1)
+                            System.out.print("Enter your number to find its logarithm : ");
+                            num1 = scanner.nextDouble();
+
+                            System.out.println("Natural log of " + num1 + " = " + calculator.logE(num1));
+                            System.out.println("\n");
+                            break;
+
+                        case 4: // Calculate sqroot(num1)
+                            System.out.print("Enter your number to find its square root : ");
+                            num1 = scanner.nextDouble();
+
+                            System.out.println("Square root of " + num1 + " = " + calculator.squareRoot(num1));
+                            System.out.println("\n");
+                            break;
+
+                        case 0:
+                            System.out.println("That's all from my side...\n Exiting....");
+                            return;
+
+                        default:
+                            System.out.println("\nWRONG CHOICE.... ENTER AGAIN");
+                    }
+
+                } catch (Exception e) {
+                    System.out.println("\nError occurred : " + e);
+                    System.out.println("TRY AGAIN");
+                    scanner.next();
+                    //You need to discard the previous input from the stream by calling sc.next()
+                    // in your catch block. Sadly, the scanner does not do this automatically when
+                    // the input fails.
+                    break;
+                }
             }
-            catch (InputMismatchException error) {
-                System.out.println(error);
-                return;
-            }
+        }
 
-            switch (choice) {
-
-                case 1: // Calculate num1 ^ num2
-                    System.out.println("Enter 2 numbers : ");
-
-                    try {
-                        num1 = scanner.nextDouble();
-                        num2 = scanner.nextDouble();
-
-                    } catch (InputMismatchException error) {
-                        System.out.println(error);
-                        return;
-                    }
-
-                    System.out.println(num1 + " ^ " + num2 + " = " + calculator.power(num1, num2));
-                    System.out.println("\n");
-
-                    break;
-
-                case 2: // Calculate num1!
-                    int num;
-                    System.out.print("Enter your number to find its factorial: ");
-
-                    try {
-                        num = scanner.nextInt();
-                    } catch (InputMismatchException error) {
-                        System.out.println(error);
-                        return;
-                    }
-
-                    System.out.println("Factorial of " + num + " = " + calculator.factorial(num));
-                    System.out.println("\n");
-
-                    break;
-
-                case 3: // Calculate loge(num1)
-                    System.out.print("Enter your number to find its logarithm : ");
-
-                    try {
-                        num1 = scanner.nextDouble();
-                    } catch (InputMismatchException error) {
-                        System.out.println(error);
-                        return;
-                    }
-
-                    System.out.println("Natural log of " + num1 + " = " + calculator.logE(num1));
-                    System.out.println("\n");
-                    break;
-
-                case 4: // Calculate sqroot(num1)
-                    System.out.print("Enter your number to find its square root : ");
-
-                    try {
-                        num1 = scanner.nextDouble();
-                    } catch (InputMismatchException error) {
-                        System.out.println(error);
-                        return;
-                    }
-
-                    System.out.println("Square root of " + num1 + " = " + calculator.squareRoot(num1));
-                    System.out.println("\n");
-                    break;
-
-                default:
-                    System.out.println("That's all from my side...\n Exiting....");
-                    return;
-            }
-
-        } while (true);
     }
+
 
     public double factorial(double num1) {
         logger.info("[FACTORIAL] - " + num1);
