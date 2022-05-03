@@ -42,10 +42,10 @@ public class Calculator {
                             num2 = scanner.nextDouble();
 
                             System.out.println(num1 + " ^ " + num2 + " = " + calculator.power(num1, num2));
-                            System.out.println("\n\n");
+                            System.out.println("\n");
                             break;
 
-                        case 2: // Calculate num1!
+                        case 2: // Calculate num1 factorial!
                             int num;
                             System.out.print("Enter your number to find its factorial: ");
                             num = scanner.nextInt();
