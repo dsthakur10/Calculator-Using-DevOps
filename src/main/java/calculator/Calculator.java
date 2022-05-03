@@ -71,7 +71,7 @@ public class Calculator {
                             break;
 
                         case 0:
-                            System.out.println("That's all from my side...\n Exiting....");
+                            System.out.println("That's all from my side...\n Exiting now....");
                             return;
 
                         default:
