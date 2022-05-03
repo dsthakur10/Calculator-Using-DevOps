@@ -17,8 +17,8 @@ public class Calculator {
         Scanner scanner = new Scanner(System.in);
         double num1, num2;
 
-        while(true){
-            while (true) {
+        while(true){    // 1st white is to handle repetition of Menu
+            while (true) {  // 2nd while is to handle Input error
                 try {
                     int choice;
                     System.out.println("\nCALCULATOR");
@@ -42,7 +42,7 @@ public class Calculator {
                             num2 = scanner.nextDouble();
 
                             System.out.println(num1 + " ^ " + num2 + " = " + calculator.power(num1, num2));
-                            System.out.println("\n");
+                            System.out.println("\n\n");
                             break;
 
                         case 2: // Calculate num1!
